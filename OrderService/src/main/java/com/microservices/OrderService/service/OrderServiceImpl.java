@@ -31,4 +31,25 @@ public class OrderServiceImpl implements OrderService {
         log.info("Order id is : {}", order.getId());
         return order.getId();
     }
+
+    public static void main(String[] args) {
+        int numRay[] = { 0, 4, 3, 2, 7, 8, 2, 3, 1 };
+System.out.println(3%9);
+        for (int i = 0; i < numRay.length; i++) {
+
+            numRay[numRay[i] % numRay.length]
+                    = numRay[numRay[i] % numRay.length]
+                    + numRay.length;
+            System.out.println("ytrewq " + i + ": " +  numRay[numRay[i] % numRay.length]
+                   );
+
+        }
+
+        for (int i = 0; i < numRay.length; i++) {
+//            System.out.println("ytrewq " + numRay[i]);
+            if (numRay[i] >= numRay.length * 2) {
+                System.out.println(i + " ");
+            }
+        }
+    }
 }

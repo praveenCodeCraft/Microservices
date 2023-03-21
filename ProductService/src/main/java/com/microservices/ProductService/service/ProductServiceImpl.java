@@ -13,6 +13,7 @@ import com.microservices.ProductService.model.ProductRequest;
 import com.microservices.ProductService.repository.ProductRepo;
 
 import java.util.Arrays;
+import java.util.Optional;
 
 @Service
 @Log4j2
@@ -43,6 +44,25 @@ public class ProductServiceImpl implements ProductService {
         ProductResponse productResponse = new ProductResponse();
         BeanUtils.copyProperties(product, productResponse);
         return productResponse;
+    }
+
+    @Override
+    public void reduceQantity(long productId, long quantity) {
+        log.info("Reduce quantity is {} for id {}", quantity , productId);
+      Product product = productRepo.findById(productId)
+              .orElseThrow(() -> new ProductServiceCustomException
+                      ("Product is not found for this id " , "PRODUCT_NOT_FOUND"));
+
+        if (product.getQuantity()  > quantity){
+                throw new ProductServiceCustomException
+                        ("Product does not have sufficient quantity","INSUFFICIENT_QUANTITY");
+        }
+
+        product.setQuantity(product.getQuantity() - quantity);
+        productRepo.save(product);
+        log.info("Product Quantity updated successfully. ");
+
+
     }
 
 
