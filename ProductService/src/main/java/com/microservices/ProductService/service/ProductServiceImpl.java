@@ -12,6 +12,7 @@ import com.microservices.ProductService.entity.Product;
 import com.microservices.ProductService.model.ProductRequest;
 import com.microservices.ProductService.repository.ProductRepo;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Optional;
 
@@ -52,8 +53,8 @@ public class ProductServiceImpl implements ProductService {
       Product product = productRepo.findById(productId)
               .orElseThrow(() -> new ProductServiceCustomException
                       ("Product is not found for this id " , "PRODUCT_NOT_FOUND"));
-
-        if (product.getQuantity()  > quantity){
+        log.info("Procuct detail is {}" , product);
+        if (product.getQuantity()  < quantity){
                 throw new ProductServiceCustomException
                         ("Product does not have sufficient quantity","INSUFFICIENT_QUANTITY");
         }
@@ -64,6 +65,5 @@ public class ProductServiceImpl implements ProductService {
 
 
     }
-
 
 }
