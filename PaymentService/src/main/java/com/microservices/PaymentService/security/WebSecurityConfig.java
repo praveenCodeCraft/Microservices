@@ -13,7 +13,7 @@ public class WebSecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
             http
-                    .authorizeRequests(authorizedReqeust -> authorizedReqeust
+                    .authorizeRequests(authorizeRequests -> authorizeRequests
                             .antMatchers("/payment/**")
                                     .hasAuthority("SCOPE_intenal")
                                     .anyRequest()

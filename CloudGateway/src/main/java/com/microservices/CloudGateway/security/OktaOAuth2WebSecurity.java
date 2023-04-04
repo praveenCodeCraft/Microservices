@@ -14,9 +14,10 @@ public class OktaOAuth2WebSecurity {
     public SecurityWebFilterChain securityWebFilterChain(ServerHttpSecurity http){
         http
                 .authorizeExchange()
-                .anyExchange().authenticated()
+                .anyExchange()
+                .authenticated()
                 .and()
-                .oauth2Login()
+                .oauth2Client()
                 .and()
                 .oauth2ResourceServer()
                 .jwt();

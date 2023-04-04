@@ -24,8 +24,10 @@ import java.util.Arrays;
 public class OrderServiceApplication {
 
 
+	@Autowired
 	private ClientRegistrationRepository clientRegistrationRepository  ;
 
+	@Autowired
 	private OAuth2AuthorizedClientRepository oAuth2AuthorizedClientRepository ;
 
 	public static void main(String[] args) {
@@ -49,6 +51,7 @@ public class OrderServiceApplication {
 		return  restTemplate;
 	}
 
+	//declare the bean of OAuth2AuthorizedClientManager
 	@Bean
 	public OAuth2AuthorizedClientManager clientManager(
 			ClientRegistrationRepository clientRegistrationRepository,

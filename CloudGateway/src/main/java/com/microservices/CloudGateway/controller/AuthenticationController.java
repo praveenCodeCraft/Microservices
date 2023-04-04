@@ -25,6 +25,7 @@ import java.util.Collection;
 import java.util.Scanner;
 import java.util.stream.Collectors;
 
+
 @RestController
 @RequestMapping("/authenticate")
 @Log4j2
@@ -34,6 +35,7 @@ public class AuthenticationController {
     public ResponseEntity<AuthenticationResponse> login( @AuthenticationPrincipal OidcUser oidcUser ,
                                                         Model model , @RegisteredOAuth2AuthorizedClient("okta") OAuth2AuthorizedClient client){
         log.info("inside the login mehtod {}" , oidcUser );
+        log.info("email id is {}"  , oidcUser.getEmail());
             AuthenticationResponse authenticationResponse = AuthenticationResponse.builder()
                     .userId(oidcUser.getEmail())
                     .accessToken(client.getAccessToken().getTokenValue())
@@ -47,6 +49,5 @@ public class AuthenticationController {
 
             return new ResponseEntity<>(authenticationResponse, HttpStatus.OK);
     }
-
 
 }

@@ -14,7 +14,7 @@ public class WebSecurityConfig {
 
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
-                .authorizeRequests(autherizeRequest -> autherizeRequest
+                .authorizeRequests(authorizeRequests -> authorizeRequests
                         .anyRequest()
                         .authenticated())
                 .oauth2ResourceServer(

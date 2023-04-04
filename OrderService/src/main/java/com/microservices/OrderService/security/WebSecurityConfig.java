@@ -16,12 +16,15 @@ import java.util.Arrays;
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class WebSecurityConfig {
 
-    public SecurityFilterChain serSecurityWebFilterChain(HttpSecurity http) throws Exception {
+    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 
         http
-                .authorizeRequests(authorizedRequest -> authorizedRequest
-                        .anyRequest().authenticated())
-                .oauth2ResourceServer(OAuth2ResourceServerConfigurer::jwt);
+                .authorizeHttpRequests()
+                .anyRequest()
+                .authenticated()
+                .and()
+                .oauth2ResourceServer()
+                .jwt();
 
        return  http.build();
     }

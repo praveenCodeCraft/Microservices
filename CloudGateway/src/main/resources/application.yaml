@@ -49,12 +49,13 @@ spring:
                 redis-rate-limiter.replenishRate: 1
                 redis-rate-limiter.burstCapacity: 1
 
+#Okta configuration for Api Gateway
 okta:
   oauth2:
     issuer: https://dev-85146773.okta.com/oauth2/default
     audience: api://default
     client-id: 0oa8wiiwomPnIVTOl5d7
     client-secret: liAqrE9eCaBO4g-Qnr_67KjgWUoRXxgIlvvhVSR0
-    scopes: openid,email,profile,offline_access
+    scopes: openid, email, profile, offline_access
 
 

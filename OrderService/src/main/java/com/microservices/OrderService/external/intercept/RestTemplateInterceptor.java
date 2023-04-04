@@ -14,7 +14,6 @@ import java.io.IOException;
 @Configuration
 public class RestTemplateInterceptor implements ClientHttpRequestInterceptor {
 
-    @Autowired
     private OAuth2AuthorizedClientManager oAuth2AuthorizedClientManager;
 
     public RestTemplateInterceptor(OAuth2AuthorizedClientManager oAuth2AuthorizedClientManager){
