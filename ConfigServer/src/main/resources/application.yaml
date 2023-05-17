@@ -8,7 +8,7 @@ spring:
     config:
       server:
         git:
-          uri: https://github.com/praveen10100000/spring-cloud-config
+          uri: https://github.com/praveenCodeCraft/spring-cloud-config.git
 
 eureka:
   instance:
