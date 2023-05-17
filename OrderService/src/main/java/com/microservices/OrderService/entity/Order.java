@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
 import java.time.Instant;
 
 @Entity
@@ -23,8 +24,11 @@ public class Order {
     private long productId;
     @Column(name = "QUANTITY")
     private long quantity;
+
     @Column(name = "ORDER_DATE")
     private Instant orderDate;
+
+
     @Column(name = "ORDER_STATUS")
     private String orderStatus;
     @Column(name = "AMOUNT")

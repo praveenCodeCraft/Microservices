@@ -14,6 +14,7 @@ import org.springframework.stereotype.Component;
 public class OAuthRequestInterceptor implements RequestInterceptor {
 
 
+    @Autowired
     private OAuth2AuthorizedClientManager oAuth2AuthorizedClientManager;
     @Override
     public void apply(RequestTemplate requestTemplate) {

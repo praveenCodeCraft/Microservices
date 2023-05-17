@@ -18,13 +18,17 @@ public class WebSecurityConfig {
 
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 
+//        http
+//                .authorizeHttpRequests()
+//                .anyRequest()
+//                .authenticated()
+//                .and()
+//                .oauth2ResourceServer()
+//                .jwt();
+
         http
-                .authorizeHttpRequests()
-                .anyRequest()
-                .authenticated()
-                .and()
-                .oauth2ResourceServer()
-                .jwt();
+                .authorizeRequests(authorizeRequest -> authorizeRequest.anyRequest().authenticated())
+                .oauth2ResourceServer(OAuth2ResourceServerConfigurer::jwt);
 
        return  http.build();
     }

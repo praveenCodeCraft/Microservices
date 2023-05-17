@@ -24,13 +24,30 @@ spring:
         registration:
           internal-client:
             provider: okta
-            authorization-grant-type: client_credentials
+            authorization-grant-type: authorization_code
             scope: internal
             client-id: 0oa8wiiwomPnIVTOl5d7
             client-secret: liAqrE9eCaBO4g-Qnr_67KjgWUoRXxgIlvvhVSR0
         provider:
           okta:
             issuer-uri: https://dev-85146773.okta.com/oauth2/default
+
+
+#  security:
+#    oauth2:
+#      client:
+#        registration:
+#          okta:
+#            client-id: 0oa8wiiwomPnIVTOl5d7
+#            client-secret: liAqrE9eCaBO4g-Qnr_67KjgWUoRXxgIlvvhVSR0
+#            scope: openid profile email
+#            redirect-uri: http://localhost:9090/login/oauth2/code/okta
+#            client-name: Okta
+#        provider:
+#          okta:
+#            issuer-uri: https://dev-85146773.okta.com/oauth2/default
+
+
 
 
 resilience4j:
@@ -46,10 +63,6 @@ resilience4j:
         slidingWindowSize: 10
         slidingWindowType: COUNT_BASED
 
-okta:
-  oauth2:
-    issuer: https://dev-85146773.okta.com/oauth2/default
-    audience: api://default
 
 
 #eureka:

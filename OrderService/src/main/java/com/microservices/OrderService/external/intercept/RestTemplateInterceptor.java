@@ -19,6 +19,7 @@ public class RestTemplateInterceptor implements ClientHttpRequestInterceptor {
     public RestTemplateInterceptor(OAuth2AuthorizedClientManager oAuth2AuthorizedClientManager){
         this.oAuth2AuthorizedClientManager = oAuth2AuthorizedClientManager;
     }
+
     @Override
     public ClientHttpResponse intercept(HttpRequest request, byte[] body, ClientHttpRequestExecution execution) throws IOException {
         request.getHeaders().add("Authorization" , "Bearer "
@@ -30,4 +31,6 @@ public class RestTemplateInterceptor implements ClientHttpRequestInterceptor {
 
         return execution.execute(request,body);
     }
+
+
 }

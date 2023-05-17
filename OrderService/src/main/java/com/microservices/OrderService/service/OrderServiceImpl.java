@@ -7,25 +7,12 @@ import com.microservices.OrderService.external.client.ProductService;
 import com.microservices.OrderService.model.*;
 import com.microservices.OrderService.repository.OrderRepository;
 import com.microservices.OrderService.request.PaymentRequest;
-import com.netflix.discovery.converters.Auto;
 import lombok.extern.log4j.Log4j2;
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
-import org.springframework.web.server.ResponseStatusException;
 
-import javax.persistence.criteria.CriteriaBuilder;
 import java.time.Instant;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.time.temporal.ChronoUnit;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Comparator;
-import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 @Log4j2
@@ -95,9 +82,11 @@ public class OrderServiceImpl implements OrderService {
                 = orderRepository.findById(orderId)
                 .orElseThrow(() -> new CustomException("The order is not found for this order", "ORDER_NOT_FOUND", 404));
 
-      ProductResponse productResponse =  restTemplate.getForObject("http://PRODUCT-SERVICE/product/" + order.getProductId() , ProductResponse.class );
+      ProductResponse productResponse =  restTemplate.getForObject("http://PRODUCT-SERVICE/product/" + order.getProductId()
+              , ProductResponse.class );
 
-      PaymentResponse payementResponse  = restTemplate.getForObject("http://PAYMENT-SERVICE/payment/" + order.getId() , PaymentResponse.class) ;
+      PaymentResponse paymentResponse = restTemplate.getForObject("http://PAYMENT-SERVICE/payment/" + order.getId() ,
+              PaymentResponse.class) ;
 
       OrderResponse.ProductDetails productDetails = OrderResponse.ProductDetails.builder()
               .productName(productResponse.getProductName())
@@ -108,10 +97,10 @@ public class OrderServiceImpl implements OrderService {
 
 
       OrderResponse.PaymentDetails paymentDetails = OrderResponse.PaymentDetails.builder()
-              .paymentId(payementResponse.getPaymentId())
-              .paymentDate(payementResponse.getPaymentDate())
-              .status(payementResponse.getStatus())
-              .paymentMode(payementResponse.getPaymentMode())
+              .paymentId(paymentResponse.getPaymentId())
+              .paymentDate(paymentResponse.getPaymentDate())
+              .status(paymentResponse.getStatus())
+              .paymentMode(paymentResponse.getPaymentMode())
               .build();
 
 
@@ -129,6 +118,5 @@ public class OrderServiceImpl implements OrderService {
 
         return orderResponse;
     }
-
 
 }

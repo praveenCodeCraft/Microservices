@@ -11,6 +11,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 @RestController
 @RequestMapping("/order")
 @Log4j2
@@ -27,10 +31,13 @@ public class OrderController {
         return new ResponseEntity<>(orderId, HttpStatus.OK);
     }
 
-    @PreAuthorize("hasAuthority('Admin') || hasAuthority('Customer')")
+    @PreAuthorize("hasAuthority('Admin') || hasAuthority('Customer') || hasAuthority('SCOPE_internal')")
     @GetMapping("{orderId}")
     public ResponseEntity<OrderResponse> getOrder(@PathVariable long orderId){
+        log.info("order id is : {} " , orderId);
         OrderResponse orderResponse = orderService.getOrder(orderId);
         return new ResponseEntity<>(orderResponse,HttpStatus.OK);
     }
-}
+    }
+
+

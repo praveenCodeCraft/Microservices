@@ -36,6 +36,7 @@ public class AuthenticationController {
                                                         Model model , @RegisteredOAuth2AuthorizedClient("okta") OAuth2AuthorizedClient client){
         log.info("inside the login mehtod {}" , oidcUser );
         log.info("email id is {}"  , oidcUser.getEmail());
+
             AuthenticationResponse authenticationResponse = AuthenticationResponse.builder()
                     .userId(oidcUser.getEmail())
                     .accessToken(client.getAccessToken().getTokenValue())

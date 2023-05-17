@@ -40,7 +40,7 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public ProductResponse getProductById(long productId) {
         Product product = productRepo.findById(productId)
-                .orElseThrow(() -> new ProductServiceCustomException("The product is not found for this id","PRODUCT_NOT_FOUND"));
+                .orElseThrow    (() -> new ProductServiceCustomException("The product is not found for this id","PRODUCT_NOT_FOUND"));
 
         ProductResponse productResponse = new ProductResponse();
         BeanUtils.copyProperties(product, productResponse);
@@ -65,5 +65,4 @@ public class ProductServiceImpl implements ProductService {
 
 
     }
-
 }
